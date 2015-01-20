@@ -17,7 +17,8 @@ typedef enum ItemType
 }ItemType;
 @class JKAlertItem;
 typedef void(^JKAlertHandler)(JKAlertItem *item);
-@interface JKAlert : NSObject<UIAlertViewDelegate>{
+
+@interface JKAlert : NSObject{
     NSMutableArray *_items;
     NSString *_title;
     NSString *_message;

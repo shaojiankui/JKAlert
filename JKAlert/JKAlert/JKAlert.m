@@ -5,8 +5,10 @@
 //  Created by Jakey on 15/1/20.
 //  Copyright (c) 2015年 www.skyfox.org. All rights reserved.
 //
-
+static const void *AlertObject = &AlertObject;
+#import <objc/runtime.h>
 #import "JKAlert.h"
+
 @implementation JKAlertItem
 @end
 @implementation JKAlert
@@ -78,12 +80,16 @@
 
 -(void)show7
 {
+   
+
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:_title
                                                         message:_message
                                                        delegate:self
                                               cancelButtonTitle:nil
                                               otherButtonTitles:nil];
     
+    objc_setAssociatedObject(alertView,  &AlertObject,self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//http://coding.tabasoft.it/ios/an-ios7-and-ios8-simple-alert/
     for (JKAlertItem *item in _items)
     {
         if (item.type == ITEM_CANCEL)
@@ -101,10 +107,10 @@
     });
     
 }
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     JKAlertItem *item = _items[buttonIndex];
     item.action(item);
 }
+
 @end
