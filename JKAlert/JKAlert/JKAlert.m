@@ -13,7 +13,11 @@ static const void *AlertObject = &AlertObject;
 @end
 @implementation JKAlert
 - (NSInteger)addButtonWithTitle:(NSString *)title{
-    [_items addObject:title];
+    JKAlertItem *item = [[JKAlertItem alloc] init];
+    item.title = title;
+    item.action = nil;
+    item.type = ITEM_OK;
+    [_items addObject:item];
     return [_items indexOfObject:title];
 }
 - (id)initWithTitle:(NSString *)title andMessage:(NSString *)message{
@@ -63,16 +67,19 @@ static const void *AlertObject = &AlertObject;
         }
         
         UIAlertAction *alertAction = [UIAlertAction actionWithTitle:item.title style:style handler:^(UIAlertAction *action) {
-            item.action(item);
+            if (item.action) {
+                item.action(item);
+            }
         }];
         
         [alertController addAction:alertAction];
-
+        
     }
     
     dispatch_async(dispatch_get_main_queue(), ^(void){
-        UIViewController *top = [UIApplication sharedApplication].keyWindow.rootViewController;
-        [top presentViewController:alertController animated:YES completion:nil];
+        // UIViewController *top = [UIApplication sharedApplication].keyWindow.rootViewController;
+        
+        [self.topViewController presentViewController:alertController animated:YES completion:nil];
     });
     
 }
@@ -80,8 +87,8 @@ static const void *AlertObject = &AlertObject;
 
 -(void)show7
 {
-   
-
+    
+    
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:_title
                                                         message:_message
                                                        delegate:self
@@ -89,7 +96,7 @@ static const void *AlertObject = &AlertObject;
                                               otherButtonTitles:nil];
     
     objc_setAssociatedObject(alertView,  &AlertObject,self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//http://coding.tabasoft.it/ios/an-ios7-and-ios8-simple-alert/
+    //http://coding.tabasoft.it/ios/an-ios7-and-ios8-simple-alert/
     for (JKAlertItem *item in _items)
     {
         if (item.type == ITEM_CANCEL)
@@ -111,6 +118,26 @@ static const void *AlertObject = &AlertObject;
 {
     JKAlertItem *item = _items[buttonIndex];
     item.action(item);
+}
+
+//http://stackoverflow.com/questions/11637709/get-the-current-displaying-uiviewcontroller-on-the-screen-in-appdelegate-m
+- (UIViewController*)topViewController {
+    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+}
+
+- (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController* tabBarController = (UITabBarController*)rootViewController;
+        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
+    } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navigationController = (UINavigationController*)rootViewController;
+        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
+    } else if (rootViewController.presentedViewController) {
+        UIViewController* presentedViewController = rootViewController.presentedViewController;
+        return [self topViewControllerWithRootViewController:presentedViewController];
+    } else {
+        return rootViewController;
+    }
 }
 
 @end
