@@ -15,7 +15,9 @@ static const void *AlertObject = &AlertObject;
 - (NSInteger)addButtonWithTitle:(NSString *)title{
     JKAlertItem *item = [[JKAlertItem alloc] init];
     item.title = title;
-    item.action = nil;
+    item.action = ^(JKAlertItem *item) {
+        NSLog(@"no action");
+    };
     item.type = ITEM_OK;
     [_items addObject:item];
     return [_items indexOfObject:title];
@@ -117,10 +119,11 @@ static const void *AlertObject = &AlertObject;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     JKAlertItem *item = _items[buttonIndex];
-    item.action(item);
+    if(item.action){
+        item.action(item);
+    }
 }
 
-//http://stackoverflow.com/questions/11637709/get-the-current-displaying-uiviewcontroller-on-the-screen-in-appdelegate-m
 - (UIViewController*)topViewController {
     return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
 }
@@ -140,4 +143,16 @@ static const void *AlertObject = &AlertObject;
     }
 }
 
+
++ (void)showMessage:(NSString *)title message:(NSString *)message
+{
+    if (message == nil)
+    {
+        return;
+    }
+    JKAlert *alert = [[JKAlert alloc]initWithTitle:title andMessage:message];
+    [alert addButtonWithTitle:@"确定"];
+    [alert show];
+    
+}
 @end

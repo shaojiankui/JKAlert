@@ -26,6 +26,7 @@ typedef void(^JKAlertHandler)(JKAlertItem *item);
 - (NSInteger)addButtonWithTitle:(NSString *)title;
 - (id)initWithTitle:(NSString *)title andMessage:(NSString *)message;
 - (void)addButton:(ItemType)type withTitle:(NSString *)title handler:(JKAlertHandler)handler;
++ (void)showMessage:(NSString *)title message:(NSString *)message;
 -(void)show;
 @end
 
