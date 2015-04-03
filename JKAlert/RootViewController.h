@@ -10,5 +10,6 @@
 
 @interface RootViewController : UIViewController
 - (IBAction)alertTouched:(id)sender;
+- (IBAction)actionsheet:(id)sender;
 
 @end

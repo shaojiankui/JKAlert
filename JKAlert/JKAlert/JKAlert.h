@@ -15,16 +15,23 @@ typedef enum ItemType
     ITEM_OTHER
     
 }ItemType;
+
+typedef enum StyleType
+{
+    STYLE_ALERT,
+    STYLE_ACTION_SHEET
+}StyleType;
+
+
 @class JKAlertItem;
 typedef void(^JKAlertHandler)(JKAlertItem *item);
 
-@interface JKAlert : NSObject{
-    NSMutableArray *_items;
-    NSString *_title;
-    NSString *_message;
-}
+
+@interface JKAlert : NSObject
+@property(nonatomic,readonly) NSArray *actions;
+- (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex;
 - (NSInteger)addButtonWithTitle:(NSString *)title;
-- (id)initWithTitle:(NSString *)title andMessage:(NSString *)message;
+- (id)initWithTitle:(NSString *)title andMessage:(NSString *)message style:(StyleType)style;
 - (void)addButton:(ItemType)type withTitle:(NSString *)title handler:(JKAlertHandler)handler;
 + (void)showMessage:(NSString *)title message:(NSString *)message;
 -(void)show;
