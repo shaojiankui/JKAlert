@@ -11,8 +11,31 @@ static const void *AlertObject = &AlertObject;
 
 @implementation JKAlertItem
 @end
+
+//private
+@interface JKAlert()<UIActionSheetDelegate>{
+    NSMutableArray *_items;
+    NSString *_title;
+    NSString *_message;
+    StyleType _styleType;
+}
+@end
+
 @implementation JKAlert
+- (id)initWithTitle:(NSString *)title andMessage:(NSString *)message style:(StyleType)style{
+    self = [super init];
+    if (self != nil)
+    {
+        _items = [NSMutableArray array];
+        _title  = title;
+        _message = message;
+        _styleType = style;
+    }
+    return self;
+}
 - (NSInteger)addButtonWithTitle:(NSString *)title{
+    NSAssert(title != nil, @"all title must be non-nil");
+
     JKAlertItem *item = [[JKAlertItem alloc] init];
     item.title = title;
     item.action = ^(JKAlertItem *item) {
@@ -22,17 +45,9 @@ static const void *AlertObject = &AlertObject;
     [_items addObject:item];
     return [_items indexOfObject:title];
 }
-- (id)initWithTitle:(NSString *)title andMessage:(NSString *)message{
-    self = [super init];
-    if (self != nil)
-    {
-        _items = [[NSMutableArray alloc] init];
-        _title  = title;
-        _message = message;
-    }
-    return self;
-}
 - (void)addButton:(ItemType)type withTitle:(NSString *)title handler:(JKAlertHandler)handler{
+    NSAssert(title != nil, @"all title must be non-nil");
+    
     JKAlertItem *item = [[JKAlertItem alloc] init];
     item.title = title;
     item.action = handler;
@@ -40,6 +55,16 @@ static const void *AlertObject = &AlertObject;
     [_items addObject:item];
     item.tag = [_items indexOfObject:item];
 }
+- (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex{
+    JKAlertItem *item = _items[buttonIndex];
+    return item.title;
+}
+- (NSArray *)actions
+{
+    return [_items copy];
+}
+
+#pragma --mark show
 -(void)show
 {
     
@@ -55,9 +80,16 @@ static const void *AlertObject = &AlertObject;
 
 -(void)show8
 {
+    UIAlertControllerStyle controllerStyle;
+    if (_styleType == STYLE_ALERT) {
+        controllerStyle = UIAlertControllerStyleAlert;
+    }else{
+        controllerStyle = UIAlertControllerStyleActionSheet;
+
+    }
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:_title
                                                                              message:_message
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                                                                      preferredStyle:controllerStyle];
     
     
     for (JKAlertItem *item in _items)
@@ -90,32 +122,59 @@ static const void *AlertObject = &AlertObject;
 -(void)show7
 {
     
-    
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:_title
-                                                        message:_message
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:nil];
-    
-    objc_setAssociatedObject(alertView,  &AlertObject,self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    //http://coding.tabasoft.it/ios/an-ios7-and-ios8-simple-alert/
-    for (JKAlertItem *item in _items)
-    {
-        if (item.type == ITEM_CANCEL)
+    if (_styleType == STYLE_ALERT) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:_title
+                                                            message:_message
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:nil];
+        
+        objc_setAssociatedObject(alertView,  &AlertObject,self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        //http://coding.tabasoft.it/ios/an-ios7-and-ios8-simple-alert/
+        for (JKAlertItem *item in _items)
         {
-            [alertView setCancelButtonIndex:[alertView addButtonWithTitle:item.title]];
+            if (item.type == ITEM_CANCEL)
+            {
+                [alertView setCancelButtonIndex:[alertView addButtonWithTitle:item.title]];
+            }
+            else
+            {
+                [alertView addButtonWithTitle:item.title];
+            }
         }
-        else
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [alertView show];
+        });
+    }else{
+         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:_title
+                                                                  delegate:self
+                                                         cancelButtonTitle:nil
+                                                    destructiveButtonTitle:nil
+                                                         otherButtonTitles:nil, nil];
+        
+        objc_setAssociatedObject(actionSheet,  &AlertObject,self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        for (JKAlertItem *item in _items)
         {
-            [alertView addButtonWithTitle:item.title];
+            if (item.type == ITEM_CANCEL)
+            {
+                [actionSheet setCancelButtonIndex:[actionSheet addButtonWithTitle:item.title]];
+            }
+            else
+            {
+                [actionSheet addButtonWithTitle:item.title];
+            }
         }
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [actionSheet showInView:self.topViewController.view];
+        });
+        
     }
-    
-    dispatch_async(dispatch_get_main_queue(), ^(void){
-        [alertView show];
-    });
+   
     
 }
+#pragma --mark alertView delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     JKAlertItem *item = _items[buttonIndex];
@@ -123,6 +182,14 @@ static const void *AlertObject = &AlertObject;
         item.action(item);
     }
 }
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    JKAlertItem *item = _items[buttonIndex];
+    if(item.action){
+        item.action(item);
+    }
+};
+
+#pragma --mark actionSheet delegate
 
 - (UIViewController*)topViewController {
     return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
@@ -150,7 +217,7 @@ static const void *AlertObject = &AlertObject;
     {
         return;
     }
-    JKAlert *alert = [[JKAlert alloc]initWithTitle:title andMessage:message];
+    JKAlert *alert = [[JKAlert alloc]initWithTitle:title andMessage:message style:STYLE_ALERT];
     [alert addButtonWithTitle:@"确定"];
     [alert show];
     

@@ -20,7 +20,7 @@
 }
 
 - (IBAction)alertTouched:(id)sender {
-    JKAlert *alert = [[JKAlert alloc]initWithTitle:@"提示" andMessage:@"haha"];
+    JKAlert *alert = [[JKAlert alloc]initWithTitle:@"提示" andMessage:@"haha" style:STYLE_ALERT];
     [alert addButton:ITEM_OTHER withTitle:@"ok" handler:^(JKAlertItem *item) {
         NSLog(@"%@,%zd",item.title,item.tag);
     }];
@@ -32,10 +32,31 @@
         NSLog(@"%@,%zd",item.title,item.tag);
 
     }];
-    [alert addButton:ITEM_OTHER withTitle:@"ok3" handler:^(JKAlertItem *item) {
+    [alert addButton:ITEM_OK withTitle:@"ok3" handler:^(JKAlertItem *item) {
         NSLog(@"%@,%zd",item.title,item.tag);
 
     }];
     [alert show];
+}
+
+- (IBAction)actionsheet:(id)sender {
+    JKAlert *alert = [[JKAlert alloc]initWithTitle:@"提示" andMessage:@"haha" style:STYLE_ACTION_SHEET];
+    [alert addButton:ITEM_OTHER withTitle:@"ok" handler:^(JKAlertItem *item) {
+        NSLog(@"%@,%zd",item.title,item.tag);
+    }];
+    [alert addButton:ITEM_OTHER withTitle:@"ok1" handler:^(JKAlertItem *item) {
+        NSLog(@"%@,%zd",item.title,item.tag);
+        
+    }];
+    [alert addButton:ITEM_OTHER withTitle:@"ok2" handler:^(JKAlertItem *item) {
+        NSLog(@"%@,%zd",item.title,item.tag);
+        
+    }];
+    [alert addButton:ITEM_CANCEL withTitle:@"ok3" handler:^(JKAlertItem *item) {
+        NSLog(@"%@,%zd",item.title,item.tag);
+        
+    }];
+    [alert show];
+
 }
 @end
