@@ -12,4 +12,5 @@
 - (IBAction)alertTouched:(id)sender;
 - (IBAction)actionsheet:(id)sender;
 
+- (IBAction)multiAlertTouched:(id)sender;
 @end

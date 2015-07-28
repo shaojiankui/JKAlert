@@ -26,6 +26,10 @@ typedef enum StyleType
 @class JKAlertItem;
 typedef void(^JKAlertHandler)(JKAlertItem *item);
 
+@interface UIAlertController (Rotation)
+//fixed UIAlertController Rotation crash bug
+@end
+
 
 @interface JKAlert : NSObject
 @property(nonatomic,readonly) NSArray *actions;
@@ -34,6 +38,7 @@ typedef void(^JKAlertHandler)(JKAlertItem *item);
 - (id)initWithTitle:(NSString *)title andMessage:(NSString *)message style:(StyleType)style;
 - (void)addButton:(ItemType)type withTitle:(NSString *)title handler:(JKAlertHandler)handler;
 + (void)showMessage:(NSString *)title message:(NSString *)message;
++ (void)showMessage:(NSString *)message;
 -(void)show;
 @end
 

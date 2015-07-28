@@ -11,21 +11,10 @@
 		A2FB3E8C1A6E120700FC3BF6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FB3E8B1A6E120700FC3BF6 /* AppDelegate.m */; };
 		A2FB3E8E1A6E120700FC3BF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2FB3E8D1A6E120700FC3BF6 /* Images.xcassets */; };
 		A2FB3E911A6E120700FC3BF6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FB3E8F1A6E120700FC3BF6 /* LaunchScreen.xib */; };
-		A2FB3E9D1A6E120700FC3BF6 /* JKAlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FB3E9C1A6E120700FC3BF6 /* JKAlertTests.m */; };
 		A2FB3EA91A6E122600FC3BF6 /* JKAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FB3EA81A6E122600FC3BF6 /* JKAlert.m */; };
 		A2FB3EAD1A6E162200FC3BF6 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FB3EAB1A6E162200FC3BF6 /* RootViewController.m */; };
 		A2FB3EAE1A6E162200FC3BF6 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FB3EAC1A6E162200FC3BF6 /* RootViewController.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A2FB3E971A6E120700FC3BF6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A2FB3E7B1A6E120600FC3BF6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A2FB3E821A6E120700FC3BF6;
-			remoteInfo = JKAlert;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A2FB3E831A6E120700FC3BF6 /* JKAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JKAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,9 +24,6 @@
 		A2FB3E8B1A6E120700FC3BF6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A2FB3E8D1A6E120700FC3BF6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A2FB3E901A6E120700FC3BF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		A2FB3E961A6E120700FC3BF6 /* JKAlertTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JKAlertTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2FB3E9B1A6E120700FC3BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2FB3E9C1A6E120700FC3BF6 /* JKAlertTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKAlertTests.m; sourceTree = "<group>"; };
 		A2FB3EA71A6E122600FC3BF6 /* JKAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKAlert.h; sourceTree = "<group>"; };
 		A2FB3EA81A6E122600FC3BF6 /* JKAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlert.m; sourceTree = "<group>"; };
 		A2FB3EAA1A6E162200FC3BF6 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -53,13 +39,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A2FB3E931A6E120700FC3BF6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -67,7 +46,6 @@
 			isa = PBXGroup;
 			children = (
 				A2FB3E851A6E120700FC3BF6 /* JKAlert */,
-				A2FB3E991A6E120700FC3BF6 /* JKAlertTests */,
 				A2FB3E841A6E120700FC3BF6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,7 +54,6 @@
 			isa = PBXGroup;
 			children = (
 				A2FB3E831A6E120700FC3BF6 /* JKAlert.app */,
-				A2FB3E961A6E120700FC3BF6 /* JKAlertTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,23 +79,6 @@
 			children = (
 				A2FB3E871A6E120700FC3BF6 /* Info.plist */,
 				A2FB3E881A6E120700FC3BF6 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A2FB3E991A6E120700FC3BF6 /* JKAlertTests */ = {
-			isa = PBXGroup;
-			children = (
-				A2FB3E9C1A6E120700FC3BF6 /* JKAlertTests.m */,
-				A2FB3E9A1A6E120700FC3BF6 /* Supporting Files */,
-			);
-			path = JKAlertTests;
-			sourceTree = "<group>";
-		};
-		A2FB3E9A1A6E120700FC3BF6 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A2FB3E9B1A6E120700FC3BF6 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -152,24 +112,6 @@
 			productReference = A2FB3E831A6E120700FC3BF6 /* JKAlert.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A2FB3E951A6E120700FC3BF6 /* JKAlertTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A2FB3EA31A6E120700FC3BF6 /* Build configuration list for PBXNativeTarget "JKAlertTests" */;
-			buildPhases = (
-				A2FB3E921A6E120700FC3BF6 /* Sources */,
-				A2FB3E931A6E120700FC3BF6 /* Frameworks */,
-				A2FB3E941A6E120700FC3BF6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A2FB3E981A6E120700FC3BF6 /* PBXTargetDependency */,
-			);
-			name = JKAlertTests;
-			productName = JKAlertTests;
-			productReference = A2FB3E961A6E120700FC3BF6 /* JKAlertTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -181,10 +123,6 @@
 				TargetAttributes = {
 					A2FB3E821A6E120700FC3BF6 = {
 						CreatedOnToolsVersion = 6.1;
-					};
-					A2FB3E951A6E120700FC3BF6 = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = A2FB3E821A6E120700FC3BF6;
 					};
 				};
 			};
@@ -202,7 +140,6 @@
 			projectRoot = "";
 			targets = (
 				A2FB3E821A6E120700FC3BF6 /* JKAlert */,
-				A2FB3E951A6E120700FC3BF6 /* JKAlertTests */,
 			);
 		};
 /* End PBXProject section */
@@ -215,13 +152,6 @@
 				A2FB3E911A6E120700FC3BF6 /* LaunchScreen.xib in Resources */,
 				A2FB3E8E1A6E120700FC3BF6 /* Images.xcassets in Resources */,
 				A2FB3EAE1A6E162200FC3BF6 /* RootViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A2FB3E941A6E120700FC3BF6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,23 +169,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A2FB3E921A6E120700FC3BF6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A2FB3E9D1A6E120700FC3BF6 /* JKAlertTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A2FB3E981A6E120700FC3BF6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A2FB3E821A6E120700FC3BF6 /* JKAlert */;
-			targetProxy = A2FB3E971A6E120700FC3BF6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A2FB3E8F1A6E120700FC3BF6 /* LaunchScreen.xib */ = {
@@ -367,40 +281,6 @@
 			};
 			name = Release;
 		};
-		A2FB3EA41A6E120700FC3BF6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = JKAlertTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JKAlert.app/JKAlert";
-			};
-			name = Debug;
-		};
-		A2FB3EA51A6E120700FC3BF6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = JKAlertTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JKAlert.app/JKAlert";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -420,14 +300,7 @@
 				A2FB3EA21A6E120700FC3BF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		A2FB3EA31A6E120700FC3BF6 /* Build configuration list for PBXNativeTarget "JKAlertTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A2FB3EA41A6E120700FC3BF6 /* Debug */,
-				A2FB3EA51A6E120700FC3BF6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

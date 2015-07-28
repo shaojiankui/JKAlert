@@ -59,4 +59,10 @@
     [alert show];
 
 }
+
+- (IBAction)multiAlertTouched:(id)sender {
+    [JKAlert showMessage:@"test"];
+    [JKAlert showMessage:@"test2"];
+
+}
 @end
