@@ -113,7 +113,7 @@ static const void *AlertObject = &AlertObject;
     dispatch_async(dispatch_get_main_queue(), ^(void){
         // UIViewController *top = [UIApplication sharedApplication].keyWindow.rootViewController;
         
-        [self.topViewController presentViewController:alertController animated:YES completion:nil];
+        [self.topShowViewController presentViewController:alertController animated:YES completion:nil];
     });
     
 }
@@ -167,7 +167,7 @@ static const void *AlertObject = &AlertObject;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            [actionSheet showInView:self.topViewController.view];
+            [actionSheet showInView:self.topShowViewController.view];
         });
         
     }
@@ -191,11 +191,14 @@ static const void *AlertObject = &AlertObject;
 
 #pragma --mark actionSheet delegate
 
-- (UIViewController*)topViewController {
+- (UIViewController*)topShowViewController {
     return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
 }
 
 - (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
+    //while (viewcontroller.parentViewController != nil) {
+    //        viewcontroller = viewcontroller.parentViewController;
+    //    }
     if ([rootViewController isKindOfClass:[UITabBarController class]]) {
         UITabBarController* tabBarController = (UITabBarController*)rootViewController;
         return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
