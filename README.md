@@ -3,39 +3,52 @@
 
 
 ##Alert使用方法
-	  JKAlert *alert = [[JKAlert alloc]initWithTitle:@"提示" andMessage:@"haha" style:STYLE_ALERT];
-    [alert addButton:ITEM_OTHER withTitle:@"ok" handler:^(JKAlertItem *item) {
-        NSLog(@"%@,%zd",item.title,item.tag);
-    }];
-    [alert addButton:ITEM_OTHER withTitle:@"ok1" handler:^(JKAlertItem *item) {
-        NSLog(@"%@,%zd",item.title,item.tag);
-
-    }];
-    [alert addButton:ITEM_OTHER withTitle:@"ok2" handler:^(JKAlertItem *item) {
+	  //    JKAlert *alert = [[JKAlert alloc]initWithTitle:@"提示" andMessage:@"haha" style:JKALERT_ALERT];
+    
+    JKAlert *alert = [JKAlert alertWithTitle:@"提示" andMessage:@"haha"];
+    [alert addCommonButtonWithTitle:@"ok0" handler:^(JKAlertItem *item) {
         NSLog(@"%@,%zd",item.title,item.tag);
 
     }];
-    [alert addButton:ITEM_OK withTitle:@"ok3" handler:^(JKAlertItem *item) {
+    
+    [alert addCommonButtonWithTitle:@"ok1" handler:^(JKAlertItem *item) {
+        NSLog(@"%@,%zd",item.title,item.tag);
+        
+    }];
+    [alert addCommonButtonWithTitle:@"ok2" handler:^(JKAlertItem *item) {
+        NSLog(@"%@,%zd",item.title,item.tag);
+        
+    }];
+    [alert addCommonButtonWithTitle:@"ok3" handler:^(JKAlertItem *item) {
+        NSLog(@"%@,%zd",item.title,item.tag);
+        
+    }];
+    [alert addCommonButtonWithTitle:@"ok4" handler:^(JKAlertItem *item) {
+        NSLog(@"%@,%zd",item.title,item.tag);
+        
+    }];
+    [alert addCancleButtonWithTitle:@"cancle" handler:^(JKAlertItem *item) {
         NSLog(@"%@,%zd",item.title,item.tag);
 
     }];
     [alert show];
 ##ActionSheet使用方法
-	  JKAlert *actionSheet = [[JKAlert alloc]initWithTitle:@"提示" andMessage:@"haha" style:STYLE_ACTION_SHEET];
-    [actionSheet addButton:ITEM_OTHER withTitle:@"ok" handler:^(JKAlertItem *item) {
+	  //    JKAlert *alert = [[JKAlert alloc]initWithTitle:@"提示" andMessage:@"haha" style:JKALERT_ACTION_SHEET];
+    JKAlert *actionSheet = [JKAlert actionSheetWithTitle:@"提示" andMessage:@"haha"];
+    [actionSheet addCommonButtonWithTitle:@"ok" handler:^(JKAlertItem *item) {
         NSLog(@"%@,%zd",item.title,item.tag);
     }];
-    [actionSheet addButton:ITEM_OTHER withTitle:@"ok1" handler:^(JKAlertItem *item) {
+    [actionSheet addCommonButtonWithTitle:@"ok1" handler:^(JKAlertItem *item) {
         NSLog(@"%@,%zd",item.title,item.tag);
-
+        
     }];
-    [actionSheet addButton:ITEM_OTHER withTitle:@"ok2" handler:^(JKAlertItem *item) {
+    [actionSheet addCommonButtonWithTitle:@"ok2" handler:^(JKAlertItem *item) {
         NSLog(@"%@,%zd",item.title,item.tag);
-
+        
     }];
-    [actionSheet addButton:ITEM_OK withTitle:@"ok3" handler:^(JKAlertItem *item) {
+    [actionSheet addCancleButtonWithTitle:@"cancle" handler:^(JKAlertItem *item) {
         NSLog(@"%@,%zd",item.title,item.tag);
-
+        
     }];
     [actionSheet show];
 ##demo
