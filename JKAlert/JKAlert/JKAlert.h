@@ -95,13 +95,13 @@ typedef void(^JKAlertHandler)(JKAlertItem *item);
  *  @param title   alert tiltle
  *  @param message alert message
  */
-+(void)showMessage:(NSString *)title message:(NSString *)message;
++(id)showMessage:(NSString *)title message:(NSString *)message;
 /**
  *  @brief  show a alert with JKALERT_STYLE_ALERT
  *
  *  @param message alert message
  */
-+(void)showMessage:(NSString *)message;
++(id)showMessage:(NSString *)message;
 /**
  *  @brief  show method
  */

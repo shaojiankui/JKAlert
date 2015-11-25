@@ -69,14 +69,6 @@ static const void *AlertObject = &AlertObject;
     [_items addObject:item];
     item.tag = [_items indexOfObject:item];
 }
-/**
- *
- *  @brief  find button title with buttonIndex
- *
- *  @param buttonIndex buttonIndex
- *
- *  @return button title
- */
 -(NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex{
     JKAlertItem *item = _items[buttonIndex];
     return item.title;
@@ -235,19 +227,19 @@ static const void *AlertObject = &AlertObject;
 }
 
 #pragma mark -- convenient method
-+ (void)showMessage:(NSString *)title message:(NSString *)message
++(id)showMessage:(NSString *)title message:(NSString *)message
 {
     if (message == nil)
     {
-        return;
+        return nil;
     }
     JKAlert *alert = [[JKAlert alloc]initWithTitle:title andMessage:message style:JKALERT_STYLE_ALERT];
     [alert addButtonWithTitle:@"确定"];
     [alert show];
-    
+    return alert;
 }
-+ (void)showMessage:(NSString *)message{
-    [[self class]showMessage:@"提示" message:message];
++(id)showMessage:(NSString *)message{
+   return [[self class]showMessage:@"提示" message:message];
     
 }
 @end
