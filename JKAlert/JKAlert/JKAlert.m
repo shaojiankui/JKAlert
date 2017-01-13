@@ -28,8 +28,8 @@ static const void *AlertObject = &AlertObject;
     if (self != nil)
     {
         _items = [NSMutableArray array];
-        _title  = title;
-        _message = message;
+        _title  = [title description];
+        _message = [message description];
         _styleType = style;
     }
     return self;
@@ -45,7 +45,7 @@ static const void *AlertObject = &AlertObject;
     NSAssert(title != nil, @"all title must be non-nil");
 
     JKAlertItem *item = [[JKAlertItem alloc] init];
-    item.title = title;
+    item.title = [title description];
     item.action = ^(JKAlertItem *item) {
         NSLog(@"no action");
     };
@@ -63,7 +63,7 @@ static const void *AlertObject = &AlertObject;
     NSAssert(title != nil, @"all title must be non-nil");
     
     JKAlertItem *item = [[JKAlertItem alloc] init];
-    item.title = title;
+    item.title = [title description];
     item.action = handler;
     item.type = type;
     [_items addObject:item];
